@@ -2,10 +2,10 @@ extends ../layouts/default
 
 mixin testimonial(testimonial)
 	.testimonial(data-ks-editable=editable(user, { list: 'Testimonial', id: testimonial.id }))
-		h2: a(href='/whatTheySay/testimonial/' + testimonial.slug)= testimonial.from
-		p.lead.text-muted #{from}, fromDate
+		h2= testimonial.from
+		p.lead.text-muted=testimonial._.fromDate.format('MMMM YYYY')
 			if testimonial.location
-				| (#{testimonial.location})
+				| &nbsp#{testimonial.location}
 		p!= testimonial.content
 
 block intro

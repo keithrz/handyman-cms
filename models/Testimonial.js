@@ -8,7 +8,7 @@ var keystone = require('keystone'),
 
 var Testimonial = new keystone.List('Testimonial', {
 	map: { name: 'from' },
-	autokey: { path: 'slug', from: 'location', unique: true }
+	autokey: { path: 'slug', from: 'from,fromDate', unique: true }
 });
 
 Testimonial.add({
