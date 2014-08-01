@@ -1,0 +1,50 @@
+extends ../layouts/default
+
+mixin testimonial(testimonial)
+	.testimonial(data-ks-editable=editable(user, { list: 'Testimonial', id: testimonial.id }))
+		h2: a(href='/whatTheySay/testimonial/' + testimonial.slug)= testimonial.from
+		p.lead.text-muted #{from}, fromDate
+			if testimonial.location
+				| (#{testimonial.location})
+		p!= testimonial.content
+
+block intro
+	.container
+		h1= 'What They Say'
+		//-TODO: make the title for testimonials configurable
+		//-h1= data.category ? data.category.name : 'What They Say'
+
+block content
+	.container: .row
+		.col-sm-8.col-md-9
+			if data.testimonials.length
+				//if data.testimonials.totalPages > 1
+				//	h4.text-weight-normal Showing
+				//		strong #{data.testimonials.first}
+				//		|  to
+				//		strong #{data.testimonials.last}
+				//		|  of
+				//		strong #{data.testimonials.total}
+				//		|  testimonials.
+				//else
+				//	h4.text-weight-normal Showing #{utils.plural(data.testimonials.results.length, '* testimonial')}.
+				.whatTheySay
+					each testimonial in data.testimonials
+						+testimonial(testimonial)
+
+				if data.testimonials.totalPages > 1
+					ul.pagination
+						if data.testimonial.previous
+							li: a(href='?page=' + data.testimonials.previous): span.glyphicon.glyphicon-chevron-left
+						else
+							li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+						each p, i in data.testimonials.pages
+							li(class=data.testimonials.currentPage == p ? 'active' : null)
+								a(href='?page=' + (p == '...' ? (i ? data.testimonials.totalPages : 1) : p ))= p
+						if data.testimonials.next
+							li: a(href='?page=' + data.testimonials.next): span.glyphicon.glyphicon-chevron-right
+						else
+							li.disabled: a(href='?page=' + data.testimonials.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+			else
+				h3.text-muted Coming soon...
+
