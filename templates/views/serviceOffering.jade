@@ -1,0 +1,29 @@
+extends ../layouts/default
+
+block content
+	.container: .row: .col-sm-10.col-sm-offset-1.col-md-8.col-md-offset-2
+		article
+			p: a(href='/whatWeOffer') &larr; back to what we offer
+			hr
+			if !data.serviceOffering
+				h2 Service Not Found!
+			else
+				header
+					h1= data.serviceOffering.title
+					h5 Posted 
+						if data.serviceOffering.publishedDate
+							| on #{data.serviceOffering._.publishedDate.format('MMMM Do, YYYY')}
+						//if data.serviceOffering.categories && data.serviceOffering.categories.length
+						//	| in
+						//	each cat, cat_i in data.serviceOffering.categories
+						//		a(href='/blog/' + cat.key)= cat.name
+						//		if cat_i < data.serviceOffering.categories.length - 1
+						//			| ,
+						//		else
+						//			|
+						if data.serviceOffering.author
+							| by #{data.serviceOffering.author.name.first}
+				.serviceOffering
+					//if data.serviceOffering.image.exists
+					//	.image-wrap: img(src=data.serviceOffering._.image.fit(750,450)).img-responsive
+					!= data.serviceOffering.content.extended

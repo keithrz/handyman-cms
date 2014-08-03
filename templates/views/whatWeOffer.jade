@@ -1,0 +1,50 @@
+extends ../layouts/default
+
+mixin service(service)
+	.service(data-ks-editable=editable(user, { list: 'Service', id: service.id }))
+		h2: a(href='/whatWeOffer/service/' + service.slug)= service.title
+		p.lead.text-muted= service.description
+			//if service.location
+			//	| &nbsp#{service.location}
+		p!= service.content.brief
+
+block intro
+	.container
+		h1= 'What We Offer'
+		//-TODO: make the title for services configurable
+		//-h1= data.category ? data.category.name : 'What They Say'
+
+block content
+	.container: .row
+		.col-sm-8.col-md-9
+			if data.services.length
+				//if data.services.totalPages > 1
+				//	h4.text-weight-normal Showing
+				//		strong #{data.services.first}
+				//		|  to
+				//		strong #{data.services.last}
+				//		|  of
+				//		strong #{data.services.total}
+				//		|  services.
+				//else
+				//	h4.text-weight-normal Showing #{utils.plural(data.services.results.length, '* service')}.
+				.whatTheySay
+					each service in data.services
+						+service(service)
+
+				if data.services.totalPages > 1
+					ul.pagination
+						if data.service.previous
+							li: a(href='?page=' + data.services.previous): span.glyphicon.glyphicon-chevron-left
+						else
+							li.disabled: a(href='?page=' + 1): span.glyphicon.glyphicon-chevron-left
+						each p, i in data.services.pages
+							li(class=data.services.currentPage == p ? 'active' : null)
+								a(href='?page=' + (p == '...' ? (i ? data.services.totalPages : 1) : p ))= p
+						if data.services.next
+							li: a(href='?page=' + data.services.next): span.glyphicon.glyphicon-chevron-right
+						else
+							li.disabled: a(href='?page=' + data.services.totalPages): span.entypo.glyphicon.glyphicon-chevron-right
+			else
+				h3.text-muted Coming soon...
+
