@@ -30,17 +30,17 @@ exports = module.exports = function(req, res) {
 
     });
 
-    // Load other serviceOfferings
-    view.on('init', function(next) {
-
-        var q = keystone.list('ServiceOffering').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
-
-        q.exec(function(err, results) {
-            locals.data.serviceOfferings = results;
-            next(err);
-        });
-
-    });
+//    // Load other serviceOfferings
+//    view.on('init', function(next) {
+//
+//        var q = keystone.list('ServiceOffering').model.find().where('state', 'published').sort('-publishedDate').populate('author').limit('4');
+//
+//        q.exec(function(err, results) {
+//            locals.data.serviceOfferings = results;
+//            next(err);
+//        });
+//
+//    });
 
     // Render the view
     view.render('serviceOffering');

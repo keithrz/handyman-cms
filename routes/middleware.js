@@ -26,11 +26,9 @@ exports.initLocals = function(req, res, next) {
 	var locals = res.locals;
 	
 	locals.navLinks = [
-		{ label: 'Home',		key: 'home',		href: '/' },
-		{ label: 'Blog',		key: 'blog',		href: '/blog' },
+		{ label: 'What We Offer',		key: 'whatWeOffer',		href: '/whatWeOffer' },
+		{ label: 'What They Say',		key: 'whatTheySay',		href: '/whatTheySay' },
 		{ label: 'Gallery',		key: 'gallery',		href: '/gallery' },
-        { label: 'What They Say',		key: 'whatTheySay',		href: '/whatTheySay' },
-        { label: 'What We Offer',		key: 'whatWeOffer',		href: '/whatWeOffer' },
 		{ label: 'Contact',		key: 'contact',		href: '/contact' }
 	];
 	

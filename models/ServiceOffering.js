@@ -15,7 +15,7 @@ ServiceOffering.add({
     title: { type: String, required: true },
     description: { type: String, index: true },
 //    location: { type: String },
-    state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
+    state: { type: Types.Select, options: 'draft, published, archived', default: 'published', index: true },
     author: { type: Types.Relationship, ref: 'User', index: true },
     publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
     content: {

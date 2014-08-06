@@ -15,7 +15,7 @@ Testimonial.add({
     from: { type: String, required: true },
     fromDate: { type: Types.Date, index: true, required: true, default: Date.now },
     location: { type: String },
-    state: { type: Types.Select, options: 'draft, published, archived', default: 'draft', index: true },
+    state: { type: Types.Select, options: 'draft, published, archived', default: 'published', index: true },
     author: { type: Types.Relationship, ref: 'User', index: true },
     publishedDate: { type: Types.Date, index: true, dependsOn: { state: 'published' } },
     content: { type: Types.Html, wysiwyg: true, height: 400 }

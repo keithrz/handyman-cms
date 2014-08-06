@@ -20,7 +20,7 @@ exports = module.exports = function(req, res) {
     // Load all categories
     view.on('init', function(next) {
 
-        keystone.list('Testimonial').model.find().sort('fromDate').exec(function(err, results) {
+        keystone.list('Testimonial').model.find({state: 'published'}).sort('fromDate').exec(function(err, results) {
 
             if (err || !results.length) {
                 return next(err);

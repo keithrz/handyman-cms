@@ -8,13 +8,22 @@ mixin service(service)
 			//	| &nbsp#{service.location}
 		p!= service.content.brief
 
+mixin serviceMenuItem(service)
+	li: a(href='/whatWeOffer/service/' + service.slug)= service.title
+
 block intro
 	.container
 		h1= 'What We Offer'
 		//-TODO: make the title for services configurable
 		//-h1= data.category ? data.category.name : 'What They Say'
 
+//-block serviceMenu
+
 block content
+	.container
+		ul
+			each service in data.services
+				+serviceMenuItem(service)
 	.container: .row
 		.col-sm-8.col-md-9
 			if data.services.length
