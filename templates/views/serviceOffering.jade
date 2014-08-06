@@ -10,7 +10,9 @@ block content
 			else
 				header
 					h1= data.serviceOffering.title
-					h5 Posted 
+					if data.serviceOffering.icon.exists
+						.image-wrap: img(src=data.serviceOffering._.icon.fit(750,450)).img-responsive
+					h5 Posted
 						if data.serviceOffering.publishedDate
 							| on #{data.serviceOffering._.publishedDate.format('MMMM Do, YYYY')}
 						//if data.serviceOffering.categories && data.serviceOffering.categories.length
