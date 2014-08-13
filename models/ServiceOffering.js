@@ -21,7 +21,8 @@ ServiceOffering.add({
     content: {
         brief: { type: Types.Html, wysiwyg: true, height: 150 },
         extended: { type: Types.Html, wysiwyg: true, height: 400 }
-    }
+    },
+    icon: {type: Types.CloudinaryImage}
 });
 
 ServiceOffering.schema.virtual('content.full').get(function() {
