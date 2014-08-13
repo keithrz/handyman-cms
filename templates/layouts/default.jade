@@ -42,14 +42,14 @@ html
 
 			//- Customise your site's navigation by changing the navLinks Array in ./routes/middleware.js
 			//- ... or completely change this header to suit your design.
-			div.row.h3
-				div.col-sm-12.row
-					div.col-sm-8
+			div.row
+				div.col-xs-12.row.h3
+					div.col-sm-8.col-xs-6
 						a(href='/')
 							img(src='/images/logo-hammer.png')
 							span.col-sm-offset-1 HandyMan&nbspTemplates
-					div.col-sm-3.pull-right
-						div 612-555-1234
+					div.col-sm-4.col-xs-5
+						div.pull-right 612-555-1234
 
 			div(role="navigation").navbar.navbar-default
 				.container-fluid
@@ -68,8 +68,6 @@ html
 								if user.canAccessKeystone
 									li: a(href='/keystone') Open Keystone
 								li: a(href='/keystone/signout') Sign Out
-							else
-								li: a(href='/keystone/signin') Sign In
 
 		//- BODY
 		#body
